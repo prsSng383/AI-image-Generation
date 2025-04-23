@@ -35,15 +35,7 @@ const BillingPage = async() => {
       <div className="grid gap-10">
            <PlanSummary  user={user} products={products || []} subscription={subscription} credits={credits} />
 
-          {
-            subscription.status === "active" && 
-            <Pricing user={user} products={products ?? []} 
-            subscription={subscription} 
-            showInterval={false} 
-            className='!p-0 max-w-full' 
-             activeProduct = {subscription?.prices?.products?.name.toLowerCase() || "pro"} 
-            /> 
-          }
+          
           
           
       </div>

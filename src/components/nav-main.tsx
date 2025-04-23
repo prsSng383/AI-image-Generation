@@ -37,16 +37,6 @@ const navItems =  [
     icon: Image
   },
   {
-    title:"My models",
-    url:"/models",
-    icon: Frame
-  },
-  {
-    title:"Train Model",
-    url:"/model-training",
-    icon: Layers
-  },
-  {
     title:"My Images",
     url:"/gallery",
     icon: Images
