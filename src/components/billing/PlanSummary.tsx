@@ -26,7 +26,7 @@ interface SubscriptionWithProduct extends Subscription{
 interface PlanSummaryProps{
     user : User | null,
     products: ProductWithPrices[] | null,
-    subscription:SubscriptionWithProduct |null,
+    subscription:SubscriptionWithProduct ,
     credits: Tables<'credits'> | null,
    
 }

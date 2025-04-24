@@ -34,7 +34,7 @@ import useGeneratedStore from '@/store/useGeneratedStore'
 
 const GeneratedImages = () => {
   const images = useGeneratedStore((state)=>state.images)
-  const loading = useGeneratedStore((state)=>state.loading)
+  
    
   console.log(images)
 

@@ -1,7 +1,7 @@
 "use client"
 import { User } from '@supabase/supabase-js'
 import React, { useId } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Card, CardContent,CardHeader, CardTitle } from '../ui/card'
 import { Button } from '../ui/button'
 import { toast } from 'sonner'
 import { resetPassword } from '@/app/actions/auth-actions'
@@ -23,8 +23,8 @@ const SecuritySettings = ({user}:SecuritySettingsProps) => {
       }else{
         toast.success("Password reset email sent! Please check your email for instructions.",{id:toastId})
       }
-    } catch (error:any) {
-      toast.error(error?.message || "There is an error sending the password reset email!",{id:toastId})
+    } catch (error) {
+      toast.error(`${error}` || "There is an error sending the password reset email!",{id:toastId})
     }
    }
 

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import ImageDialog from './ImageDialog'
 
 
-type ImageProps = {url:string | undefined , }&Tables<"generated_images">
+type ImageProps = {url:string | null }&Tables<"generated_images">
 
 interface GalleryProps{
     images : ImageProps[]

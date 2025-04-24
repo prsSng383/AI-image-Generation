@@ -21,14 +21,12 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import Link from 'next/link';
 import { Slider } from "@/components/ui/slider"
 import { Textarea } from '../ui/textarea';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Info } from 'lucide-react';
 import useGeneratedStore from '@/store/useGeneratedStore';

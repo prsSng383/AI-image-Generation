@@ -31,12 +31,12 @@ interface SubscriptionWithProduct extends Subscription{
 interface PricingProps{
     user : User | null,
     products: ProductWithPrices[] | null,
-    subscription:SubscriptionWithProduct |null,
+    subscription:SubscriptionWithProduct,
     mostPopularProduct:string,
 }
 
-const renderPricingButton = ({user , product , subscription , price , mostPopularProduct , handleStripeCheckout ,handleStripePortalRequest} : 
-  {user: User | null , subscription : SubscriptionWithProduct , product: ProductWithPrices , price : Price , mostPopularProduct : string , handleStripeCheckout:(price:Price)=>Promise<void> , handleStripePortalRequest : ()=>Promise<void>})=>
+const renderPricingButton = ({user , product , subscription , price , mostPopularProduct , handleStripeCheckout} : 
+  {user: User | null , subscription : SubscriptionWithProduct , product: ProductWithPrices , price : Price , mostPopularProduct : string , handleStripeCheckout:(price:Price)=>Promise<void> , handleStripePortalRequest : (price:Price)=>Promise<string>})=>
     {
       
       if(user && !subscription){
@@ -95,7 +95,7 @@ const Pricing = ({user , products , mostPopularProduct ="pro" , subscription}:Pr
       
      <div className='grid grid-cols-3 place-items-center mx-auto gap-8 space-y-4'>
       {
-        products.map(product =>{
+        products?.map(product =>{
           const price = product?.prices?.find(price => price.interval === billingInterval);
            if(!price) return null;
            
@@ -125,7 +125,7 @@ const Pricing = ({user , products , mostPopularProduct ="pro" , subscription}:Pr
                           <span className='text-base font-medium text-muted-foreground'>/{billingInterval}</span>
                          </p>
                            {
-                            renderPricingButton({user , product , subscription , price , mostPopularProduct ,handleStripeCheckout ,handleStripePortalRequest})
+                            renderPricingButton({user , product , subscription , price , mostPopularProduct ,handleStripeCheckout,handleStripePortalRequest})
                            }
                          
                      </div>

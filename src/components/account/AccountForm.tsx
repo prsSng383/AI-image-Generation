@@ -49,8 +49,8 @@ const AccountForm = ({user}: AccountFormProps) => {
       }else{
         toast.success("Profile updated successfully",{id:toastId})
       }
-    } catch (error:any) {
-      toast.error(error?.message || "There is an error updating the profile!",{id:toastId})
+    } catch (error) {
+      toast.error(`${error}` || "There is an error updating the profile!",{id:toastId})
     }
    }
 

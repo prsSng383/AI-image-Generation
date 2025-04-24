@@ -1,21 +1,16 @@
 "use client"
 
-import {type LucideIcon } from "lucide-react"
 import {
  
   CreditCard,
-  Frame,
   Image,
   Images,
-  Layers,
   Settings2,
-  Sparkles,
   SquareTerminal,
 } from "lucide-react"
 
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,

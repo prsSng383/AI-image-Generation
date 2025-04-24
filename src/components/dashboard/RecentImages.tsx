@@ -18,7 +18,7 @@ import { ArrowRight } from 'lucide-react'
 
 interface RecentImagesProps {
     images: Array<Tables<"generated_images">> & {
-        url : string | undefined
+        url?: string | null
     }
 }
 

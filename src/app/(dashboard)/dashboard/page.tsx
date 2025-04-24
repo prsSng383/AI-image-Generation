@@ -25,7 +25,8 @@ export default async function Page() {
            
           <StatsCards imageCount = {imageCount} credits = {credits} />
           <div className="grid gap-6 grid-cols-4">
-            <RecentImages images = {images?.slice(0,6)??[]} />
+          <RecentImages images={(images?.slice(0, 6).map((img) => ({...img, url: img.url ?? null})) ?? [])}/>
+
             <QuickActions/>
 
             {/* quick actions */}

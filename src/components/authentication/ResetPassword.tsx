@@ -44,8 +44,8 @@ const ResetPassword = ({className}:{className?:string}) => {
       }else{
         toast.success("Password reset email sent! Please check your email for instructions.",{id:toastId})
       }
-    } catch (error:any) {
-      toast.error(error?.message || "There is an error sending the password reset email!",{id:toastId})
+    } catch (error) {
+      toast.error(`${error}` || "There is an error sending the password reset email!",{id:toastId})
     }
   }
   

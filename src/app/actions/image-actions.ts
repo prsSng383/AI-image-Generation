@@ -17,7 +17,7 @@ const replicate = new Replicate({
 interface ImageResponse{
     error: string | null;
     success: boolean;
-    data: any | null;
+    data: unknown | null;
 }
 
 
@@ -61,9 +61,9 @@ export async function generateImageAction(input: (z.infer<typeof ImageGeneration
         data:output
      }
      
-    }catch(error : any){
+    }catch(error: unknown){
         return{
-            error:error.message || "Failed to generate Image!" ,
+            error:`${error}`||"Failed to generate Image!" ,
             success:false,
             data:null
          }
