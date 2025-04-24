@@ -1,7 +1,6 @@
 
 import { getCredits } from '@/app/actions/credit-actions';
 import PlanSummary from '@/components/billing/PlanSummary';
-import Pricing from '@/components/billing/Pricing';
 import { getProducts, getSubscription, getUser } from '@/lib/supabase/queries';
 import { createClient } from '@/lib/supabase/server'
 import { redirect} from 'next/navigation';
@@ -33,11 +32,7 @@ const BillingPage = async() => {
       </div>
 
       <div className="grid gap-10">
-           <PlanSummary  user={user} products={products || []} subscription={subscription} credits={credits} />
-
-          
-          
-          
+           <PlanSummary  user={user} products={products || []} subscription={subscription} credits={credits} /> 
       </div>
 
     </section>

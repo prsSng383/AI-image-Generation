@@ -8,10 +8,9 @@ import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
 import { User } from '@supabase/supabase-js'
 import { usePathname, useRouter } from 'next/navigation'
-import { checkoutWithStripe, createStripePortal } from '@/lib/stripe/server'
+import { checkoutWithStripe} from '@/lib/stripe/server'
 import { getErrorRedirect } from '@/lib/helpers'
 import { getStripe } from '@/lib/stripe/client'
-import { toast } from 'sonner'
 
 type Product = Tables<"products">
 type Price = Tables<"prices">
@@ -33,37 +32,22 @@ interface PricingProps{
     user : User | null,
     products: ProductWithPrices[] | null,
     subscription:SubscriptionWithProduct |null,
-    mostPopularProduct?:string,
+    mostPopularProduct:string,
 }
 
 const renderPricingButton = ({user , product , subscription , price , mostPopularProduct , handleStripeCheckout ,handleStripePortalRequest} : 
   {user: User | null , subscription : SubscriptionWithProduct , product: ProductWithPrices , price : Price , mostPopularProduct : string , handleStripeCheckout:(price:Price)=>Promise<void> , handleStripePortalRequest : ()=>Promise<void>})=>
     {
-      // //  case1 : user has active subscription for this product
-      //  if(user && subscription && subscription.prices?.products?.name?.toLowerCase() === product.name?.toLowerCase()){
-      //   return <Button className='mt-8 w-full font-semibold'
-      //     onClick={handleStripePortalRequest}>Manage Subscription</Button>
-      //  }
-        
-      //  //case2 : user is loggd in and has an active subscription for a different product.
-      //  if(user && subscription){
-      //   return <Button className='mt-8 w-full font-semibold'
-      //   variant={"secondary"}
-      //   onClick={() => handleStripePortalRequest}>Switch Plan</Button>
-      //  }
-
-      //  // case3 : logged in user with no subs or different subscription
-      //   if(user && !subscription ){
-      //     return( <Button className='mt-8 w-full font-semibold'
-      //     variant={product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ? "default" : "secondary"}
-      //     onClick={() => handleStripeCheckout(price)}>Subscribe</Button>
-      //   )
-      //   }
+      
       if(user && !subscription){
-        return (<Button className='mt-8 w-full font-semibold'
+        return (
+        <Button className='mt-8 w-full font-semibold'
         variant={product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ? "default" : "secondary"}
         onClick={() => handleStripeCheckout(price)}>Subscribe</Button>
-      )}
+      )
+    }
+
+      return null;
 }
 
 const Pricing = ({user , products , mostPopularProduct ="pro" , subscription}:PricingProps) => {
@@ -98,9 +82,7 @@ const Pricing = ({user , products , mostPopularProduct ="pro" , subscription}:Pr
       }
 
       const handleStripePortalRequest = async () =>{
-        toast.info("Redirecting to stripe portal...")
-        const redirectUrl = await createStripePortal(currentPath);
-        return router.push(redirectUrl)
+        return "stripe checkout function"
       }
 
   return (
@@ -111,9 +93,9 @@ const Pricing = ({user , products , mostPopularProduct ="pro" , subscription}:Pr
        <Label htmlFor='pricing-switch' className='font-semibold text-base'>Yearly</Label>   
      </div>  
       
-     <div className='grid grid-cols-3 place-items-center mx-auto gap-8 space-y-0'>
+     <div className='grid grid-cols-3 place-items-center mx-auto gap-8 space-y-4'>
       {
-        products?.map(product =>{
+        products.map(product =>{
           const price = product?.prices?.find(price => price.interval === billingInterval);
            if(!price) return null;
            
@@ -124,14 +106,12 @@ const Pricing = ({user , products , mostPopularProduct ="pro" , subscription}:Pr
            }).format((price?.unit_amount || 0)/100)
           
              return <div key={product.id} className={cn('border bg-background rounded-xl shadow-sm h-fit divide-y divide-border',
-              product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ? "border-primary bg-background drop-shadow-md" : "border-border"
+              product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ? "border-primary bg-background drop-shadow-md scale-105" : "border-border"
              )} >
                      <div className='p-6'>
                         <h2 className='text-2xl leading-6 font-semibold text-foreground flex items-center justify-between'>
                           {product.name}
-                          {
-                          product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ?  <Badge className='border-border font-semibold'>Selected</Badge> : null
-                         }
+              
                           {
                           product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ?  <Badge className='border-border font-semibold'> Most Popular</Badge> : null
                          }

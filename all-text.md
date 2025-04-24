@@ -220,3 +220,24 @@ const faqsList = [
 - Join thousands of users who are already creating amazing AI-generated images.
 
 
+## ROUGH
+// //  case1 : user has active subscription for this product
+      //  if(user && subscription && subscription.prices?.products?.name?.toLowerCase() === product.name?.toLowerCase()){
+      //   return <Button className='mt-8 w-full font-semibold'
+      //     onClick={handleStripePortalRequest}>Manage Subscription</Button>
+      //  }
+        
+      //  //case2 : user is loggd in and has an active subscription for a different product.
+      //  if(user && subscription){
+      //   return <Button className='mt-8 w-full font-semibold'
+      //   variant={"secondary"}
+      //   onClick={() => handleStripePortalRequest}>Switch Plan</Button>
+      //  }
+
+      //  // case3 : logged in user with no subs or different subscription
+      //   if(user && !subscription ){
+      //     return( <Button className='mt-8 w-full font-semibold'
+      //     variant={product.name?.toLowerCase() === mostPopularProduct.toLowerCase() ? "default" : "secondary"}
+      //     onClick={() => handleStripeCheckout(price)}>Subscribe</Button>
+      //   )
+      //   }
