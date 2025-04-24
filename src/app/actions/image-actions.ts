@@ -1,6 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 "use server"
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod"
 import { ImageGenerationFormSchema } from "@/components/image-generation/Configurations";
 import Replicate from "replicate";
 import { createClient } from "@/lib/supabase/server";
